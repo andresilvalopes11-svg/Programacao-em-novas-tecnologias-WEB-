@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Loja</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/site.css') }}">
+</head>
+<body>
+
+    <h1>Bem-vindo à Minha Loja</h1>
+    <p style="text-align: center;">Explore nossas categorias</p>
+
+    <div class="cards">
+        {% for categoria in categorias %}
+            <div class="card categoria">
+
+                <h3>{{ categoria['nome'] }}</h3>
+                
+                <img src="data:image/jpeg;base64,{{ categoria['imagem'] }}" alt="{{ categoria['nome'] }}">
+
+                <a href="{{ url_for('siteProdutos',
+                                    id_categoria=categoria['id']) }}">
+                    Ver produtos
+                </a>
+
+            </div>
+        {% else %}
+            <p>Nenhuma categoria cadastrada.</p>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

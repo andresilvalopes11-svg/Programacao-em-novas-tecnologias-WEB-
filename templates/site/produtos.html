@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossos Produtos</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/site.css') }}">
+</head>
+<body>
+
+    <h1>Nossos Produtos</h1>
+
+    <div class="cards">
+        {% for produto in produtos %}
+            <div class="card produto">
+
+                {% if produto['imagem'] %}
+                    <img
+                        src="data:image/jpeg;base64,{{ produto['imagem'] }}"
+                        alt="{{ produto['nome'] }}">
+                {% endif %}
+
+                <h3>{{ produto['nome'] }}</h3>
+
+                <p class="preco">
+                    R$ {{ produto['preco'] }}
+                </p>
+
+            </div>
+        {% else %}
+            <p>Nenhum produto cadastrado nesta categoria.</p>
+        {% endfor %}
+    </div>
+
+    <a class="voltar" href="{{ url_for('index') }}">
+        Voltar para a página inicial
+    </a>
+
+</body>
+</html>
